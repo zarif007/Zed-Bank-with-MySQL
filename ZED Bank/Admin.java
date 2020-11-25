@@ -9,6 +9,8 @@ public class Admin {
     String Mysql_url = "Your Database Url";
     String Mysql_username = "Your Database Name";
     String Mysql_password = "Your Database Password";
+    
+    //This Function displays the whole DataBase to the admin
     public void DisplayAll(int count) {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -27,6 +29,7 @@ public class Admin {
         }
     }
 
+    //Admin can Register a user manually 
     public void InsertUser(String name, String mail, int age, String password, int noc) {
         password = getCryptoHash(password, "SHA-256", noc);
         String Inserting = "insert into cred values('"+name+"', '"+mail+"',"+age+", '"+password+"',"+ noc+" )";
@@ -44,6 +47,7 @@ public class Admin {
         }
     }
 
+    //Admin can remove a user using this function
     public void DeleteUser(int id) {
         String delete = "delete from cred where id = "+id;
         String delete2 = "delete from users_acc where id = "+id;
